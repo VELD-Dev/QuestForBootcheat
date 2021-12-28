@@ -756,7 +756,7 @@ RatchetDialogTable4 = {
 
 
 ----------------------------------------------------------------------------------
--- RESPONSES FUNCTIONS -----------------------------------------------------------
+-- SMUG RESPONSES FUNCTIONS ------------------------------------------------------
 ----------------------------------------------------------------------------------
 
 function f_SmugglerResponse_Deal()
@@ -768,6 +768,8 @@ end
 function f_SmugglerResponse_BuisnessOnly()
 	scene_clear_title()
 	activate_cam(get_hero(), scene_smuggler_cam_medium)
+	actor_speak_and_wait(smuggler, SmugDlgOpen1)
+	wait(0.2)
 	actor_speak_and_wait(smuggler, SmugDlgBusiness)
 end
 
@@ -883,5 +885,5 @@ elseif SAVE.scene_smuggler_state == 2 then
 elseif SAVE.scene_smuggler_state == 3 then
 	f_SmugglerResponse_Deal()
 elseif SAVE.scene_smuggler_state == 4 then
-	f_SmugglerResponse_Business()
+	f_SmugglerResponse_BuisnessOnly()
 end
