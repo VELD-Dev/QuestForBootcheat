@@ -575,6 +575,7 @@ RatchetDlgBolts = {
 
 
 --Group 'em so the responses show up together correctly
+-- These are the responses shown at screen.
 RatchetDialogTable1 = {
 	RatchetDlgVacation,
 	RatchetDlgRepairs,
@@ -644,183 +645,6 @@ actor_set_stance(smuggler_parrot, AnimRoles.ANIM_ROLE_STAND)
 
 --activate_cam(active_hero, scene_smuggler_cam_medium, true);
 
-
-
-
------------------------------------------------------------
------------------------------------------------------------
------------------------------------------------------------
----------- T H E   C H E A T   C O D E   P A R T ----------
------------------------------------------------------------
------------------------------------------------------------
------------------------------------------------------------
-
-
--- The dialogue of Ratchet, what he says in the dialogue purposes
-RatchetDlgCheatFunc1 = {
-	dialog = DialogueSpecs.None, -- Set ID=0 to the dialog (unkown ID) | This is mandatory to put custom text in here
-	text = "Enable Ininite Bolts", -- Text button shown at screen
-	func = f_SmugglerResponse_InfiniteBolts -- What the text executes
-}
-
--- Hum... It's the label button to enable cheat.
-RatchetDlgEnableCheat = {
-	dialog = DialogueSpecs.None, -- Set ID=0 to the dialog (unkown ID) | This is mandatory to put custom text in here
-	text = "Enable cheat *MENU*", -- text button shown at screen
-	func = f_SmugglerResponse_EnableCheat -- Execution script
-}
-
--- Well same but to disable the MENU PART only.
-RatchetDlgEnableCheat = {
-	dialog = DialogueSpecs.None, -- Set ID=0 to the dialog (unkown ID) | This is mandatory to put custom text in here.
-	text = "Disable cheat *MENU*", -- Text button shown at screen
-	func = f_SmugglerResponse_DisableCheat -- Execution script
-}
-
-
-
-----------------------------------------------------------------------------------
-----------------------------------------------------------------------------------
--- VARIABLES ---------------------------------------------------------------------
-----------------------------------------------------------------------------------
-----------------------------------------------------------------------------------
-
-local areInfiniteBoltsEnabled = false
-local areInfiniteAmmoEnabled = false
-
-
-----------------------------------------------------------------------------------
--- DIALOGS TABLES ----------------------------------------------------------------
-----------------------------------------------------------------------------------
-
--- The dialog table which list every dialogs
-RatchetDialogTable5 = {
-	RatchetDlgCheatFunc1,
-	RatchetDlgDisableCheat,
-	RatchetDlgExit
-}
-
--- Basically, it's the "When Smug has nothing to say" box purposes
-RatchetDialogTable4 = {
-	RatchetDlgNeedBolt,
-	RatchetDlgNoBuy,
-	RatchetDlgEnableCheat,
-	RatchetDlgExit
-}
-
-
-
-----------------------------------------------------------------------------------
--- RESPONSES FUNCTIONS -----------------------------------------------------------
-----------------------------------------------------------------------------------
-
-function f_SmugglerResponse_Deal()
-	scene_clear_title()
-	activate_cam(get_hero(), scene_smuggler_cam_medium)
-	actor_speak_and_wait(smuggler, SmugDlgDeal)
-end
-
-function f_SmugglerResponse_BuisnessOnly()
-	scene_clear_title()
-	activate_cam(get_hero(), scene_smuggler_cam_medium)
-	actor_speak_and_wait(smuggler, SmugDlgBusiness)
-end
-
--- The function executed when clicked on "Enable Infinite "
-function f_SmugglerResponse_InfiniteBolts()
-	scene_clear_title()
-	activate_cam(get_hero(), scene_smuggler_cam_closeup)
-	-- Play a random Smuggler's voice-line
-	MyRandomLine = math.random(0, 2)
-	if MyRandomLine == 0 then
-		actor_speak_and_wait(smuggler, SmugDlgBusiness)
-		wait(0.2)
-	elseif MyRandomLine == 1 then
-		actor_speak_and_wait(smuggler, SmugDlgBuy)
-		wait(0.2)
-	elseif MyRandomLine == 2 then
-		actor_speak_and_wait(smuggler, SmugDlgBolt)
-		wait(0.2)
-	end
-
-	if areInfiniteBoltsEnabled == true then
-		areInfiniteBoltsEnabled = false
-		hero_add_bolts(get_hero(), -hero_get_bolts(get_hero))
-	else
-		areInfiniteBoltsEnabled = true
-		hero_add_bolts(get_hero(), 9999999)
-	end
-
-	SAVE.scene_smuggler_ratchet_state = 4
-end
-
--- Set the scene to "Cheat Menu"
-function f_SmugglerResponse_EnableCheat()
-	scene_clear_title()
-	activate_cam(get_hero(), scene_smuggler_cam_closeup)
-	actor_speak_and_wait(smuggler, SmugDlgBusiness)
-	SAVE.scene_smuggler_ratchet_state = 4
-	SAVE.scene_smuggler_state = 4
-end
-
--- Set the scene to "Nothing New"
-function f_SmugglerResponse_DisableCheat()
-	scene_clear_title()
-	activate_cam(get_hero(), scene_smuggler_cam_parrot)
-	actor_speak_and_wait(parrot, ParrotDlgCheater)
-	SAVE.scene_smuggler_ratchet_state = 3
-	SAVE.scene_smuggler_state = 3
-end
-
-----------------------------------------------------------------------------------
--- MENU OPEN FUNCTIONS -----------------------------------------------------------
-----------------------------------------------------------------------------------
-
-function f_RatchetMenu_NothingNew()
-	activate_cam(get_hero(), scene_smuggler_cam_medium, true)
-	return scene_show_menu_and_wait(RatchetDialogTable4)
-end
-
-function f_RatchetMenu_CheatMenu()
-	activate_cam(get_hero(), scene_smuggler_cam_closeup, true)
-	return scene_show_menu_and_wait(RatchetDialogTable5)
-end
-
-
---Set up the continous while loop to go through the dialog trees <== ORIGINAL DEV COMMENT
--- Basically, it's the list of every menus. To add a menu add a new smuggler_ratchet_state == <number of table of responses> ==> 
--- And in the scope, set the table (responses) that you want to it show
-local continue = true
-while continue do
-	
-	--Initial greeting | Table list
-	if not SAVE.scene_smuggler_ratchet_state then
-		selection = f_RatchetMenu_Open()
-	
-	elseif SAVE.scene_smuggler_ratchet_state == 1 then
-		selection = f_RatchetMenu_Bolt()
-	
-	elseif SAVE.scene_smuggler_ratchet_state == 2 then
-		selection = f_RatchetMenu_Buy()
-
-	elseif SAVE.scene_smuggler_ratchet_state == 3 then
-		selection = f_RatchetMenu_NothingNew()
-
-	elseif SAVE.scene_smuggler_ratchet_state == 4 then
-		selection = f_RatchetMenu_CheatMenu()
-
-	end
-	
-	if(selection ~= nil and selection.func ~= nil) then
-		continue = selection.func()
-	else
-		continue = false
-	end
-	
-wait()	
-	
-end
-
 --initial contact, check to see if it's been made <=== original dev comment
 -- First thing said when you come talk with Smug (initial dialog)
 if SAVE.scene_smuggler_state == nil then
@@ -836,7 +660,31 @@ elseif SAVE.scene_smuggler_state == 2 then
 
 	--Comes in the last phase to open the cheat too
 elseif SAVE.scene_smuggler_state == 3 then
-	f_SmugglerResponse_Deal()
-elseif SAVE.scene_smuggler_state == 4 then
-	f_SmugglerResponse_Business()
+	f_SmugglerResponse_NothingNew()
 end
+
+local continue = true
+while continue do
+	
+	--Initial greeting | Table list
+	if not SAVE.scene_smuggler_ratchet_state then
+		selection = f_RatchetMenu_Open()
+	
+	elseif SAVE.scene_smuggler_ratchet_state == 1 then
+		selection = f_RatchetMenu_Bolt()
+	
+	elseif SAVE.scene_smuggler_ratchet_state == 2 then
+		selection = f_RatchetMenu_Buy()
+
+	end
+	
+	if(selection ~= nil and selection.func ~= nil) then
+		continue = selection.func()
+	else
+		continue = false
+	end
+	
+wait()	
+	
+end
+
