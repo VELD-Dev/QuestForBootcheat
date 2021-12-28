@@ -366,21 +366,6 @@ function f_SmugglerResponse_Business()
 	return true
 end
 
---Play this after any of the first initial responses
-function f_SmugglerResponse_Anything()
-	scene_clear_title()
-	activate_cam(get_hero(), scene_smuggler_cam_closeup)
-	actor_speak_and_wait(smuggler, SmugDlgAnything)
-	wait(0.2)
-	
-	--Now he has nothing left to say
-	SAVE.scene_smuggler_state = 1
-	SAVE.scene_smuggler_ratchet_state = 3
-	
-	--and take a note we've already spoken to him
-	SAVE.scene_smuggler_initial_contact = true
-end
-
 --Play this when Ratchet asks to buy a versa bolt
 function f_SmugglerResponse_Bolt()
 	scene_clear_title()
@@ -759,6 +744,44 @@ RatchetDialogTable4 = {
 -- SMUG RESPONSES FUNCTIONS ------------------------------------------------------
 ----------------------------------------------------------------------------------
 
+-- DOCUMENTATION
+--		STATES OF "SAVE.scene_smuggler_ratchet_state"
+--			nil		:	RatchetDialogTable1 | Responses: I'm in vacation, etc... / Exit
+--			1		:	RatchetDialogTable2 | Responses: I'm in market for a versa-bolt, got one ? / Exit
+--			2		:	RatchetDialogTable3 | Ratchet can try to buy the bolt | Responses: Label How many bolts you have / Gimme one! / No deal, pal'.
+--			3		:	RatchetDialogTable4 | Nothing new / Normally can activate the cheat.
+--			4		:	RatchetDialogTable5 | Cheat menu / Normally can activate cheats.
+--
+--		STATES OF "SAVE.scene_smuggler_state"
+--			nil		:	Initial contact (the first time you come talk with him)												FUNCTION:	f_SmugglerResponse_Open()
+--			1		:	When player come back before the lighthouse dude ask for the bolt 									FUNCTION:	f_SmugglerResponse_NothingNew()
+--			2		:	When player come back after the lighthouse dude asks for the bolt 									FUNCTION:	f_SmugglerResponse_SecondOpen()
+--			3		:	When player comes after buying, kinda "I have a deal for you, a cheat yo" to enable the cheat 		FUNCTION:	f_SmugglerResponse_Deal()
+--			4		:	When player come back when the cheat menu is enabled		 										FUNCTION:	f_SmugglerResponse_BuisnessOnly()
+--
+--		STATES OF "SAVE.scene_smuggler_initial_contact"
+--			false	:	Initial contact have not been done
+--			true	:	Ratchet & Smug already talked
+
+
+
+
+
+--Play this after any of the first initial responses <== Original dev comment
+function f_SmugglerResponse_Anything()
+	scene_clear_title()
+	activate_cam(get_hero(), scene_smuggler_cam_closeup)
+	actor_speak_and_wait(smuggler, SmugDlgAnything)
+	wait(0.2)
+	
+	--Now he has nothing left to say
+	SAVE.scene_smuggler_ratchet_state = 3
+	SAVE.scene_smuggler_state = 1
+	
+	--and take a note we've already spoken to him
+	SAVE.scene_smuggler_initial_contact = true
+end
+
 function f_SmugglerResponse_Deal()
 	scene_clear_title()
 	activate_cam(get_hero(), scene_smuggler_cam_medium)
@@ -843,18 +866,24 @@ while continue do
 	--Initial greeting | Table list
 	if not SAVE.scene_smuggler_ratchet_state then
 		selection = f_RatchetMenu_Open()
-	
+		--Comes with the initial contact
+
 	elseif SAVE.scene_smuggler_ratchet_state == 1 then
 		selection = f_RatchetMenu_Bolt()
-	
+		--Comes when the lighthouse dude says "Hey I need a bolt, got one ?"
+		--Smug says "Hey, bud, wassup ?" and then next menu f_RatchetMenu_Buy()
+
 	elseif SAVE.scene_smuggler_ratchet_state == 2 then
 		selection = f_RatchetMenu_Buy()
+		--Comes when Ratchet can try to buy the bolt
 
 	elseif SAVE.scene_smuggler_ratchet_state == 3 then
 		selection = f_RatchetMenu_NothingNew()
+		--Comes when Ratchet did not talk to the lighthouse dude and also AFTER the problem with the lighthouse is fixed.
 
 	elseif SAVE.scene_smuggler_ratchet_state == 4 then
 		selection = f_RatchetMenu_CheatMenu()
+		--Comes when the player has enabled the cheat-menu
 
 	end
 	
@@ -869,21 +898,26 @@ wait()
 end
 
 --initial contact, check to see if it's been made <=== original dev comment
--- First thing said when you come talk with Smug (initial dialog)
+
 if SAVE.scene_smuggler_state == nil then
 	f_SmugglerResponse_Open()
+	-- First thing said when you come talk with Smug (initial dialog)
 
-	--Comes back before the lighthouse dude asks for the bolt		
 elseif SAVE.scene_smuggler_state == 1 then
-	f_SmugglerResponse_NothingNew()
-
-	--Comes back after the lighthouse dude asks for the bolt
+	f_SmugglerResponse_Deal()
+	--Comes back before the lighthouse dude asks for the bolt
+	--Can activate the cheat normally
+	
 elseif SAVE.scene_smuggler_state == 2 then
 	f_SmugglerResponse_SecondOpen()
+	--Comes back after the lighthouse dude asks for the bolt
 
-	--Comes in the last phase to open the cheat too
 elseif SAVE.scene_smuggler_state == 3 then
 	f_SmugglerResponse_Deal()
+	--Comes after buying, kind of "I have a deal for you, a cheat yo" to enable the cheat
+
 elseif SAVE.scene_smuggler_state == 4 then
 	f_SmugglerResponse_BuisnessOnly()
+	--Comes when the cheat-menu is enabled
+
 end
