@@ -1,0 +1,81 @@
+,Designer Notes:,,,,,,,,
+,,,,,,,,,
+,Bolt Pools,,,,,,,,
+,100% Running Bolt Total (Taken from actual figures in table below),,,Scenario #1 based on these numbers being set as the BoltPool,,,,,
+,Prologue,10000,2500,prologue,npc_island,viper_caverns,npc_island_return,treasure_island,boss
+,NPC Island,70000,32500,5000,25000,17500,10000,40000,2500
+,Viper Caverns,87500,50000,,,,,,
+,NPC Battlefield,87500,50000,Scenario #1,,,First Afford,,
+,TR + VC2,127500,90000,Need,Cost,100%,75%,66%,50%
+,Boss,131500,94000,Bolt Head,"10,000",NPC Isle,NPC Isle,NPC Isle,NPC Isle
+,100% Total,131500,94000,Ride TR,"15,000",NPC Isle,NPC Isle,NPC Isle,NPC Isle
+,,,,Alpha Nova,"50,000",TR - early,TR - late,Never,Never
+,75% Running Bolt Total (Taken from actual figures in table below),,,Total Cost,"75,000",,,,
+,Prologue,7500,1875,,,,,,
+,NPC Island,52500,24375,,,,,,
+,Viper Caverns,65625,37500,,,,,,
+,NPC Battlefield,65625,37500,,,,,,
+,TR + VC2,95625,67500,,,,,,
+,Boss,98625,70500,,,,,,
+,75% Bolt Total,98625,70500,,,,,,
+,,,,,,,,,
+,66% Running Bolt Total (Taken from actual figures in table below),,,Scenario #2 based on these numbers being set as the BoltPool,,,,,
+,Prologue,6666.7,1666.7,prologue,npc_island,viper_caverns,npc_island_return,treasure_island,boss
+,NPC Island,46666.7,15555.6,500,2500,1750,1000,4000,250
+,Viper Caverns,58333.33333,58333.33333,,,,,,
+,NPC Battlefield,58333.3,58333.3,Scenario #2,,, Can First Afford,,
+,TR + VC2,85000.0,85000.0,Need,Cost,100%,75%,66%,50%
+,Boss,87666.66667,87666.66667,Bolt Head,x,,,,
+,66% Bolt Total,87666.66667,306555.6,Ride TR,x,,,,
+,,,,Alpha Nova,x,,,,
+,50% Running Bolt Total (Taken from actual figures in table below),,,Total ,x,,,,
+,Prologue,5000,1250,,,,,,
+,NPC Island,35000,11666.7,,,,,,
+,Viper Caverns,43750,43750,,,,,,
+,NPC Battlefield,43750,43750,,,,,,
+,TR + VC2,63750,63750,,,,,,
+,Boss,65750,65750,,,,,,
+,50% Bolt Total,65750,229916.7,,,,,,
+,XP Pools,,,,,,,,
+,Hit Point,Can First Achieve (Uses Scenario X figures),Hero Tab Fig,Scenario #X (Based on these numbers being set as the XP Pool),,,,,
+,10HP,Default,0,prologue,npc_island,viper_caverns,npc_island_return,treasure_island,boss
+,11HP,Prologue,500,1000,2000,3000,3500,6000,500
+,12HP,,1000,,,,,,
+,13HP,,2000,,,Scenario XP,16000,,
+,14HP,,3000,,,,,,
+,15HP,,5000,Running XP Totals (Sum of actual figures below plus adjustments),,,,,
+,16HP,,7000,prologue,npc_island,viper_caverns,npc_island_return,treasure_island,boss
+,17HP,,9000,1200,5200,8200,8200,14200,14200
+,18HP,,11000,,,,,,
+,19HP,,13000,,,,,,
+,20HP,,15000,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,Special Note: Having to fake the numbers for some Bolt Pools and XP Pools as the levels are set up in such a way that doesn't play well with the economy,,,,,,,,
+,,,,,,,,,
+,"Add as many levels as needed in the columns beyond E.  Be sure to label the level column in the yellow row marked ""Level"".",,,,,,,,
+,"The ""Default"" level is used if the actual level cannot be found in this table.",,,,,,,,
+,Level names in ALL CAPS are used in replay more,,,,,,,,
+
+,Variable:,Comments:,,,Level Name:,,,,
+
+Level,,,default,prologue,npc_island,viper_caverns,npc_island_return,treasure_island,boss
+,XPPool,,100,2400,20000,3000,0,6000,0
+,BoltPool,,100,10000,60000,17500,0,40000,4000
+,MineralPool,,0,0,0,0,0,0,0
+,XPLimit,Reward depreciation kicks in after this much XP,,1200,2000,3000,4000,6000,3750
+,BoltLimit,Limits will use the bolt pool value if left blank,,5000,21000,17500,35000,40000,15000
+,MineralLimit,,,,,,,,
+,CrateReward,Relative bolt reward for crates,1,1,1,1,1,1,1
+,BreakableReward,Relative reward for breakables,0.25,0.25,0.25,-2,-2,-2,0.25
+,TreasureReward,Relative reward for special treasure (pirate chest),20,0,20,20,20,20,20
+,SpawnedBoltWeight,Bolts per point for SPAWNED enemies,0.1,0.1,0.1,0.1,0.1,0.1,0.1
+,SpawnedMineralWeight,Minerals per point for SPAWNED enemies,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+,SpawnedXPWeight,XP per point for spawned enemies,1.0,1.0,1.0,1.0,1.0,1.0,0.0
+,DeviceAmmoCount,Number of devices per treasure chest,3,3,3,3,3,3,3
+,,,,,,,,,
+
+,,,,,,,,,
+
+
+

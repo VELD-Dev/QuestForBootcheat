@@ -1,0 +1,64 @@
+-- EffectsConduit::SoundGroup enum script
+-- Friendly name: SoundGroups
+-- auto-generated on 8/4/2008 at 4:03:24 PM by BOXX3
+-- 
+-- The following line instructs the dependency parser to ignore this file:
+-- DependencyParser: IGNORE
+
+SoundGroups = {}
+
+SoundGroups["SOUND_GROUP_MASTER"] = 0
+SoundGroups["SOUND_GROUP_USER_SFX"] = 1
+SoundGroups["SOUND_GROUP_SFX"] = 2
+SoundGroups["SOUND_GROUP_AMBIENT"] = 3
+SoundGroups["SOUND_GROUP_INTERACTIVE"] = 4
+SoundGroups["SOUND_GROUP_UI"] = 5
+SoundGroups["SOUND_GROUP_USER_DIALOGUE"] = 6
+SoundGroups["SOUND_GROUP_DIALOGUE"] = 7
+SoundGroups["SOUND_GROUP_NO_DUCKING"] = 8
+SoundGroups["SOUND_GROUP_LIGHT_DUCKING"] = 9
+SoundGroups["SOUND_GROUP_MEDIUM_DUCKING"] = 10
+SoundGroups["SOUND_GROUP_HEAVY_DUCKING"] = 11
+SoundGroups["SOUND_GROUP_USER_MUSIC"] = 12
+SoundGroups["SOUND_GROUP_MUSIC"] = 13
+SoundGroups["SOUND_GROUP_FX_CONTROLLER"] = 10014
+SoundGroups["SOUND_GROUP_2D_AMBIENT"] = 10015
+SoundGroups["SOUND_GROUP_3D_AMBIENT"] = 10016
+SoundGroups["SOUND_GROUP_LOWPASS_IGNORE"] = 10017
+SoundGroups["SOUND_GROUP_WEAPONS"] = 10018
+SoundGroups["SOUND_GROUP_WPN_PLAYER"] = 10019
+SoundGroups["SOUND_GROUP_WPN_NPC"] = 10020
+SoundGroups["SOUND_GROUP_EXPLOSIONS"] = 10021
+SoundGroups["SOUND_GROUP_DOORS"] = 10022
+SoundGroups["SOUND_GROUP_FOOTSTEPS"] = 10023
+SoundGroups["SOUND_GROUP_FTSTP_PLAYER"] = 10024
+SoundGroups["SOUND_GROUP_BULLET_BYS"] = 10025
+SoundGroups["SOUND_GROUP_BULLET_IMPACTS"] = 10026
+SoundGroups["SOUND_GROUP_PROPS"] = 10027
+SoundGroups["SOUND_GROUP_FOLEY"] = 10028
+SoundGroups["SOUND_GROUP_FOL_PLAYER"] = 10029
+SoundGroups["SOUND_GROUP_VOCAL_SFX"] = 10030
+SoundGroups["SOUND_GROUP_VOC_PLAYER"] = 10031
+SoundGroups["SOUND_GROUP_VEHICLES"] = 10032
+SoundGroups["SOUND_GROUP_BREAKABLES"] = 10033
+SoundGroups["SOUND_GROUP_INGAME_MUSIC"] = 10034
+SoundGroups["SOUND_GROUP_RELOAD_MUSIC"] = 10035
+SoundGroups["SOUND_GROUP_DEATH_DIRGE_MUS"] = 10036
+SoundGroups["SOUND_GROUP_NPC"] = 10037
+SoundGroups["SOUND_GROUP_ENEMY"] = 10038
+SoundGroups["SOUND_GROUP_MUS_GROOVITRON"] = 10039
+SoundGroups["SOUND_GROUP_MUS_PIRATE_MG"] = 10040
+SoundGroups["SOUND_GROUP_FTSTP_NPC"] = 10041
+SoundGroups["SOUND_GROUP_FTSTP_ENEMY"] = 10042
+SoundGroups["SOUND_GROUP_FOL_NPC"] = 10043
+SoundGroups["SOUND_GROUP_FOL_ENEMY"] = 10044
+SoundGroups["SOUND_GROUP_VOC_NPC"] = 10045
+SoundGroups["SOUND_GROUP_VOC_ENEMY"] = 10046
+SoundGroups["SOUND_GROUP_NPC_SCENES"] = 10047
+SoundGroups["SOUND_GROUP_HERO_CLANK"] = 10048
+SoundGroups["SOUND_GROUP_REALTIME_MOVIE"] = 10049
+SoundGroups["SOUND_GROUP_DIALOGUEDECRYPTER"] = 10050
+SoundGroups["SOUND_GROUP_SPECIAL_UPGRADE"] = 10051
+SoundGroups["SOUND_GROUP_HUD_MUSIC"] = 10052
+
+-- end EffectsConduit::SoundGroup dynamic enum script

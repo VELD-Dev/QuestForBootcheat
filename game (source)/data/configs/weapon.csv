@@ -1,0 +1,271 @@
+,"Designer Notes: (Stay within yellow box, you can insert new rows)",,,,,,
+,,,,,,,
+,,,,,,,
+,Recognized Variables:,,,,,,
+,,Damage,Primary weapon damage,,,,
+,,AltDamage,"Secondary weapon damage, if any",,,,
+,,AOE,Area of effect (splash damage radius),,,,
+,,RateOfFire,Maximum shots per second,,,,
+,,Range,Primary projectile range,,,,
+,,Knockback,Hit reaction level (0-5),,,,
+,,AutoAim,AutoAim strength (0-1),,,,
+,,XP,Experience needed to obtain this level,,,,
+,,MaxAmmo,Maximum stored ammo for this weapon,,,,
+,,CrateAmmo,Ammo per ammo crate pickup,,,,
+,,SpawnCount,"Number of objects to spawn, when relevent",,,,
+,,Duration,"Duration of effect, if any",,,,
+,,Misc,"Miscellaneous data, usage depends on weapon",,,,
+,,SpawnChance,Multiplier on chance that ammo will spawn for this weapon,,,,
+,* Note that not all weapons use all variables,,,,,,
+
+Weapon:,Variable:,Comments:,,Per-Level Data:,,,
+,,,1,2,3,4,5
+Wrench,,Given at game start,,,,,
+,Damage,PERCENT of R's HP for reg dmg,35,,,,
+,AltDamage,PERCENT of R's HP for smash dmg,50,,,,
+,Knockback,,2,,,,
+,XP,,0,,,,
+,Range,Grapple range,16,,,,
+,AOE,Radius of smash damage on ground,1,,,,
+,Misc,BOX BASHER radius,2.5,,,,
+,AutoAim,,2.5,,,,
+
+Combuster,,Given at game start,,,,,,,,
+,Damage,Direct impact damage,3.0,3.0,3.0,3.6,4.3,,,
+,AltDamage,Burn damage per second,1.0,1.3,1.0,1.2,1.4,,,
+,AOE,Burn area of effect,1.0,1.0,1.0,1.0,1.0,,,
+,Duration,Splash burn time,0,0,0,0,0,,,
+,Range,,20,20,20,20,20,,,
+,Knockback,Direct impact knockback,1,1,1,1,1,,,
+,AutoAim,,1,1,1,1,1,,,
+,RateOfFire,,3,3,3,3,3,,,
+,XP,,0,0,0,350,1575,,,
+,MaxAmmo,,100,100,100,100,100,,,
+,CrateAmmo,,15,15,15,15,15,,,
+,SpawnCount,Secondary splashes,1,1,1,1,2,,,
+,SpawnChance,,1,1,1,1,1,,,
+,,,,,,,,,,
+Grenade,,Bought at Cobalia (Level 30),,,,,,,,
+,Damage,,15.0,15.0,15.0,18.0,21.6,,,
+,Knockback,,3,3,3,3,3,,,
+,AutoAim,,1,1,1,1,1,,,
+,RateOfFire,,1.5,1.5,1.5,1.5,1.5,,,
+,SpawnCount,number of bomblets spawned,0,0,0,0,0,,,
+,AltDamage,bomblet damage,0,0,0,0,3.6,,,
+,XP,,0,0,0,525,1838,,,
+,MaxAmmo,,8,8,8,8,8,,,
+,CrateAmmo,,2,2,2,2,2,,,
+,Range,,12,12,12,12,12,,,
+,AOE,,5,5,5,5,5,,,
+,Misc,linear speed when thrown,25,25,25,25,25,,,
+,SpawnChance,,1,1,1,1,1,,,
+
+Tornado,,Bought at Cobalia (Level 30),,,,,,,,
+,Damage,,20.0,20.0,20.0,24.0,28.8,,,
+,AltDamage,lightning damage,0.0,0.0,0.0,0.0,7.2,,,
+,AOE,max radius of tornado effect,7,7,7,7,7,,,
+,AutoAim,,0,0,0,0,0,,,
+,RateOfFire,,1,1,1,1,1,,,
+,SpawnCount,RoF for LIGHTNING BOLTS from tornado,0,0,0,0,2.5,,,
+,Knockback,,2,2,2,2,2,,,
+,XP,,0,0,0,600,1800,,,
+,MaxAmmo,,5,5,5,5,5,,,
+,CrateAmmo,,1,1,1,1,1,,,
+,Duration,how long the tornado lasts,5,5,5,5,5,,,
+,Misc,tornado linear speed,5,5,5,5,5,,,
+,SpawnChance,,1,1,1,1,1,,,
+
+Predator,,Bought at Stratus City (Level 24),,,,,,,,
+,Damage,,9.0,9.0,9.0,10.8,13.0,,,
+,AOE,,2,2,2,2,2,,,
+,Knockback,,2,2,2,2,2,,,
+,AutoAim,,2,2,2,2,2,,,
+,RateOfFire,Time per lock (in seconds),0.3,0.3,0.3,0.3,0.3,,,
+,XP,,0,0,0,725,1994,,,
+,MaxAmmo,,25,25,25,25,25,,,
+,CrateAmmo,,6,6,6,6,6,,,
+,SpawnCount,Rockets per Launch (Max 8),3,3,3,3,4,,,
+,Range,,32,32,32,32,32,,,
+,Misc,num of napalm chunks,0,0,0,0,3,,,
+,AltDamage,napalm damage per second,0,0,0,0,3.888,,,
+,SpawnChance,,1,1,1,1,1,,,
+
+Ravager,,Bought at Stratus City (Level 24),,,,,,,,
+,Damage,,5.0,5.0,5.0,6.0,7.2,,,
+,AltDamage,chain lightning damage,5.0,5.0,5.0,6.0,7.2,,,
+,Range,chain lightning range,6.0,6.0,6.0,6.0,6.0,,,
+,AOE,radius of damage sphere at snap,2,2,2,2,2,,,
+,Knockback,,2,2,2,2,2,,,
+,RateOfFire,,0.5,0.5,0.5,0.5,0.5,,,
+,XP,,0,0,0,575,1725,,,
+,MaxAmmo,,30,30,30,30,30,,,
+,CrateAmmo,,12,12,12,12,12,,,
+,SpawnChance,,1,1,1,1,1,,,
+
+RoboHive,,Bought at Rykan V,,,,,,,,
+,Damage,,1.5,1.5,1.5,1.8,2.2,,,
+,AltDamage,TOXIC damage over time (dot),0.0,0.0,0.0,0.0,0.4,,,
+,Misc,dot duration,0.0,0.0,0.0,0.0,5.0,,,
+,AOE,Range of attack,16,16,16,16,16,,,
+,Range,Distance hive is thrown,6,6,6,6,6,,,
+,Knockback,,0,0,0,0,0,,,
+,AutoAim,,0,0,0,0,0,,,
+,Duration,Duration of active hive,30,30,30,30,30,,,
+,RateOfFire,Rate at which HIVES can be shot,0.2,0.2,0.2,0.2,0.2,,,
+,XP,,0,0,0,625,1719,,,
+,MaxAmmo,,4,4,4,4,4,,,
+,CrateAmmo,,2,2,2,2,2,,,
+,SpawnCount,Number of spawned bugs,50,50,50,50,50,,,
+,SpawnChance,,1,1,1,1,1,,,
+,,,,,,,,,,
+AlphaNova,,Found in Sargasso (Level 8),,,,,,,,
+,Damage,,79.6,79.6,79.6,79.6,79.6,,,
+,AltDamage,special mod damage (exploding hits),19.9,19.9,19.9,19.9,19.9,,,
+,AOE,special mod radius (exploding hits),6.0,6.0,6.0,6.0,6.0,,,
+,Knockback,,3,3,3,3,3,,,
+,AutoAim,,1,1,1,1,1,,,
+,XP,,0,0,0,0,0,,,
+,MaxAmmo,,4,4,4,4,4,,,
+,CrateAmmo,,1,1,1,1,1,
+,Duration,Charge-up time,1,1,1,1,1,
+,Range,,64,64,64,64,64,
+,SpawnChance,,1,1,1,1,1,
+
+Groovitron,,Bought at Cobalia (Level 30),,,,,,
+,Damage,,0,,,,,
+,AOE,Radius of effect,12,,,,,
+,Knockback,,0,,,,,
+,AutoAim,,0,,,,,
+,RateOfFire,,0.25,,,,,
+,XP,,0,,,,,
+,MaxAmmo,,3,,,,,
+,CrateAmmo,,1,,,,,
+,Range,Distance forward to project ball,8,,,,,
+,Duration,Disco ball lifetime (seconds),12,,,,,
+,SpawnChance,,1
+
+MiniLeech,,Bought at Cobalia (Level 30),
+,Damage,Damage dealt to enemy,10
+,SpawnCount,# pickups spawned per hit,3
+,AOE,Radius of bomb damage,6
+,AutoAim,,1
+,Range,,12
+,Misc,speed when thrown,25
+,Knockback,,2
+,RateOfFire,,1.2
+,XP,,0
+,MaxAmmo,,2
+,CrateAmmo,,1
+,SpawnChance,,1
+
+ConfusionGas,,Bought at Stratus City Level 24),
+,AOE,effective range of gas,8
+,AltDamage,enemy dies in this many seconds,10
+,AutoAim,,0
+,RateOfFire,,1
+,XP,,0
+,MaxAmmo,,2
+,CrateAmmo,,1
+,Range,how far will it be thrown,12
+,Duration,gas emit time in seconds,8
+,Misc,projectile speed,15
+,SpawnChance,,1
+
+Zurkon,,Bought at Rykan V (Level ?),
+,Damage,PERCENT of Ratchet HP dmg per shot,33
+,Range,Target range of Mr Zurkon,16
+,AOE,,0.5
+,Knockback,,1
+,RateOfFire,,1
+,XP,,0
+,MaxAmmo,,4
+,CrateAmmo,,1
+,SpawnCount,Zurkon's ammo (number of shots),24
+,Misc,Rate-of-fire for Mr Zurkon,3
+,SpawnChance,,1
+
+MaxiLeech,,Bought at Zordoom (Level 5),
+,Damage,Damage dealt to each enemy,100
+,SpawnCount,# pickups spawned per hit,5
+,AOE,Radius of bomb damage,8
+,AutoAim,,1
+,Range,,16
+,Misc,speed when thrown,25
+,Knockback,,2
+,RateOfFire,,1.2
+,XP,,0
+,MaxAmmo,,1
+,CrateAmmo,,1
+,SpawnChance,,1
+,,,
+Copter,,Bought at Kerchuu (Level 1311),
+,Damage,Rocket damage (% of max hlth),50
+,AltDamage,Self-destruct damage,100
+,AOE,Self-destruct damage radius,3
+,RateOfFire,Rate of fire for the ROCKETS,2
+,Range,Rocket range,20
+,Knockback,Rocket knockback,2
+,AutoAim,Rocket autoaim,2
+,XP,,0
+,MaxAmmo,,3
+,CrateAmmo,,1
+,SpawnCount,Maximum rockets fired,40
+,Duration,Copter usage duration,30
+,SpawnChance,,1
+,,,
+Morph,,Bought at Kerchuu (Level 1311),
+,Damage,,1000
+,AOE,,6
+,AltDamage,,1000
+,AutoAim,,1
+,Range,,16
+,Knockback,,2
+,RateOfFire,,1.2
+,Duration,duration of morph effect (secs),15
+,XP,,0
+,MaxAmmo,,3
+,CrateAmmo,,1
+,SpawnChance,,1
+
+Slinkonator,,Bought at Meridian City (Level ?),
+,Damage,Will change to % of Ratchet health,100
+,AOE,Target radius of slinky,8
+,Knockback,,0
+,AutoAim,,0
+,RateOfFire,,0.5
+,XP,,0
+,MaxAmmo,,3
+,CrateAmmo,,1
+,SpawnCount,Number of Slinkys per Bomb (10-40),24
+,Duration,How long each slinky lasts (secs),60
+,Range,How far bomb is tossed,12,
+,SpawnChance,,1,
+
+SwingShot,,,,
+,Damage,,0,
+,AOE,,0,
+,Knockback,,0,
+,AutoAim,,0,
+,RateOfFire,,5,
+,XP,,0,5000
+,MaxAmmo,,0,
+,CrateAmmo,,0,
+,Range,Valid range to hit targets,15,
+,Duration,,0,
+
+Gelanator,,,,
+,Damage,,0,
+,Knockback,,0,
+,AutoAim,,0,
+,RateOfFire,,1.5,
+,XP,,0,5000
+,MaxAmmo,,1,
+,CrateAmmo,,0,
+,Range,,8,
+
+Decryptor,,,,
+,Damage,,0,
+,RateOfFire,,1,
+,Range,,1,
+,MaxAmmo,,0,
+,XP,,0,5000

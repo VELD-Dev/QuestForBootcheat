@@ -39,3 +39,12 @@ luac.out
 *.x86_64
 *.hex
 
+# PS3 files
+*.psarc
+*.toc
+*.dat
+*.tp
+*.tph
+*.pkg
+*.bnk
+*.bnkh
