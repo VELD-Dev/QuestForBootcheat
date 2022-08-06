@@ -14,6 +14,12 @@
 --Set the cost of the bolt
 bolt_cost = 10000
 
+--Have bolts been added ?
+boltsHaveBeenAdded = false
+
+--Are infinite ammo enabled ?
+areInfiniteAmmoEnabled = false
+
 --Duck music & sfx
 group_fade_vol(2, 0.5, 1.0)
 group_fade_vol(13, 0.5, 1.0)
@@ -557,8 +563,6 @@ RatchetDlgBolts = {
 	numreplace = hero_get_bolts(get_hero()),
 }
 
-
-
 --Group 'em so the responses show up together correctly
 RatchetDialogTable1 = {
 	RatchetDlgVacation,
@@ -689,7 +693,7 @@ actor_set_stance(smuggler_parrot, AnimRoles.ANIM_ROLE_STAND)
 -- The dialogue of Ratchet, what he says in the dialogue purposes
 RatchetDlgCheatFunc1 = {
 	dialog = DialogueSpecs.None, -- Set ID=0 to the dialog (unkown ID) | This is mandatory to put custom text in here
-	text = "Enable Ininite Bolts", -- Text button shown at screen
+	text = "Add 10,0000,000 bolts", -- Text button shown at screen
 	func = f_SmugglerResponse_InfiniteBolts -- What the text executes
 }
 
@@ -707,17 +711,23 @@ RatchetDlgDisableCheat = {
 	func = f_SmugglerResponse_DisableCheat -- Execution script
 }
 
+RatchetDlgEnabledCheats = {
+	dialog = DialogueSpecs.None, -- Set ID=0 to the dialog (unkown ID) | This is mandatory to put custom text in here.
+	text = "Bolts added: " .. tostring(boltsHaveBeenAdded) .. ",\nInfinite ammo: " .. tostring(areInfiniteAmmoEnabled), -- Show the current status of the cheats.
+	label = true, -- This is a text, not a button
+}
 
 
-----------------------------------------------------------------------------------
-----------------------------------------------------------------------------------
--- VARIABLES ---------------------------------------------------------------------
-----------------------------------------------------------------------------------
-----------------------------------------------------------------------------------
-
-local areInfiniteBoltsEnabled = false
-local areInfiniteAmmoEnabled = false
-
+-- Smug when you add bolts
+SmugDlgBolt = {
+	dialog = DialogueSpecs.None, --DialogueSpecs.NI_SMUG_INITIAL_NEEDBOLT_RESPONSE
+	text = "10,000,000 bolts have been added to your inventory.",
+	stance = AnimRoles.ANIM_ROLE_STAND,
+	target = get_hero(),
+	gesture = {
+		1.0,	AnimRoles.ANIM_ROLE_REACH_RIGHT,
+	}
+}
 
 ----------------------------------------------------------------------------------
 -- DIALOGS TABLES ----------------------------------------------------------------
@@ -725,9 +735,10 @@ local areInfiniteAmmoEnabled = false
 
 -- The dialog table which list every dialogs
 RatchetDialogTable5 = {
+	RatchetDlgEnabledCheats,
 	RatchetDlgCheatFunc1,
 	RatchetDlgDisableCheat,
-	RatchetDlgExit
+	RatchetDlgExit,
 }
 
 -- Basically, it's the "When Smug has nothing to say" box purposes
@@ -776,7 +787,7 @@ function f_SmugglerResponse_Anything()
 	
 	--Now he has nothing left to say
 	SAVE.scene_smuggler_ratchet_state = 3
-	SAVE.scene_smuggler_state = 1
+	SAVE.scene_smuggler_state = 3
 	
 	--and take a note we've already spoken to him
 	SAVE.scene_smuggler_initial_contact = true
@@ -813,11 +824,11 @@ function f_SmugglerResponse_InfiniteBolts()
 		wait(0.2)
 	end
 
-	if areInfiniteBoltsEnabled == true then
-		areInfiniteBoltsEnabled = false
-		hero_add_bolts(get_hero(), -hero_get_bolts(get_hero))
+	if boltsHaveBeenAdded == true then
+		boltsHaveBeenAdded = false
+		hero_add_bolts(get_hero(), -9999999)
 	else
-		areInfiniteBoltsEnabled = true
+		boltsHaveBeenAdded = true
 		hero_add_bolts(get_hero(), 9999999)
 	end
 
