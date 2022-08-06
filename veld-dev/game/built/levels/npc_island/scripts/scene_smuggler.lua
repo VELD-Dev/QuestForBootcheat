@@ -701,7 +701,7 @@ RatchetDlgEnableCheat = {
 }
 
 -- Well same but to disable the MENU PART only.
-RatchetDlgEnableCheat = {
+RatchetDlgDisableCheat = {
 	dialog = DialogueSpecs.None, -- Set ID=0 to the dialog (unkown ID) | This is mandatory to put custom text in here.
 	text = "Disable cheat *MENU*", -- Text button shown at screen
 	func = f_SmugglerResponse_DisableCheat -- Execution script
