@@ -20,6 +20,11 @@ boltsHaveBeenAdded = false
 --Are infinite ammo enabled ?
 areInfiniteAmmoEnabled = false
 
+-- Mod info variables
+local modName = "Quest for Bootcheat";
+local modVersion = "v1.01"
+local modAuthor = "V E L D";
+
 --Duck music & sfx
 group_fade_vol(2, 0.5, 1.0)
 group_fade_vol(13, 0.5, 1.0)
@@ -697,6 +702,12 @@ RatchetDlgCheatFunc1 = {
 	func = f_SmugglerResponse_InfiniteBolts -- What the text executes
 }
 
+RatchetDlgCheatFunc2 = {
+	dialog = DialogueSpecs.None,
+	text = "Refuel all your ammo",
+	func = f_SmugglerResponse_RefuelAmmo,
+}
+
 -- Hum... It's the label button to enable cheat.
 RatchetDlgEnableCheat = {
 	dialog = DialogueSpecs.None, -- Set ID=0 to the dialog (unkown ID) | This is mandatory to put custom text in here
@@ -713,7 +724,7 @@ RatchetDlgDisableCheat = {
 
 RatchetDlgEnabledCheats = {
 	dialog = DialogueSpecs.None, -- Set ID=0 to the dialog (unkown ID) | This is mandatory to put custom text in here.
-	text = "Bolts added: " .. tostring(boltsHaveBeenAdded) .. ",\nInfinite ammo: " .. tostring(areInfiniteAmmoEnabled), -- Show the current status of the cheats.
+	text = tostring(modName) .. " " .. tostring(modVersion) .." by " .. tostring(modAuthor) .. "\nBolts added: " .. tostring(boltsHaveBeenAdded) .. ", Infinite ammo: " .. tostring(areInfiniteAmmoEnabled), -- Show the current status of the cheats.
 	label = true, -- This is a text, not a button
 }
 
@@ -729,6 +740,16 @@ SmugDlgBolt = {
 	}
 }
 
+SmugDlgAmmoRefuel = {
+	dialog = DialogueSpecs.None,
+	text = "Ammo have been refueled. Nah mate, you can't get back your money if you're already full.",
+	stance = AnimRoles.ANIM_ROLE_STAND,
+	target = get_hero(),
+	gesture = {
+		1.0,	AnimRoles.ANIM_ROLE_REACH_RIGHT,
+	}
+}
+
 ----------------------------------------------------------------------------------
 -- DIALOGS TABLES ----------------------------------------------------------------
 ----------------------------------------------------------------------------------
@@ -737,6 +758,7 @@ SmugDlgBolt = {
 RatchetDialogTable5 = {
 	RatchetDlgEnabledCheats,
 	RatchetDlgCheatFunc1,
+	RatchetDlgCheatFunc2,
 	RatchetDlgDisableCheat,
 	RatchetDlgExit,
 }
@@ -791,6 +813,8 @@ function f_SmugglerResponse_Anything()
 	
 	--and take a note we've already spoken to him
 	SAVE.scene_smuggler_initial_contact = true
+
+	f_RatchetMenu_NothingNew()
 end
 
 function f_SmugglerResponse_Deal()
@@ -833,6 +857,25 @@ function f_SmugglerResponse_InfiniteBolts()
 	end
 
 	SAVE.scene_smuggler_ratchet_state = 4
+	SAVE.scene_smuggler_state = 4
+
+	return true
+end
+
+function f_SmugglerResponse_RefuelAmmo()
+	scene_clear_title()
+	activate_cam(get_hero(), scene_smuggler_cam_closeup)
+	actor_speak_and_wait(smuggler, SmugDlgBolt)
+	wait(0.2)
+
+	if hero_get_bolts(get_hero()) >= 5000 then
+		hero_add_bolts(get_hero(), -5000)
+		hero_give_all_ammo(get_hero())
+	else
+		actor_speak_and_wait(smuggler, SmugDlgNoBuy)
+	end
+
+	return true
 end
 
 -- Set the scene to "Cheat Menu"
@@ -842,6 +885,8 @@ function f_SmugglerResponse_EnableCheat()
 	actor_speak_and_wait(smuggler, SmugDlgBusiness)
 	SAVE.scene_smuggler_ratchet_state = 4
 	SAVE.scene_smuggler_state = 4
+
+	f_RatchetMenu_CheatMenu()
 end
 
 -- Set the scene to "Nothing New"
@@ -851,6 +896,8 @@ function f_SmugglerResponse_DisableCheat()
 	actor_speak_and_wait(parrot, ParrotDlgCheater)
 	SAVE.scene_smuggler_ratchet_state = 3
 	SAVE.scene_smuggler_state = 3
+
+	f_RatchetMenu_NothingNew()
 end
 
 ----------------------------------------------------------------------------------
