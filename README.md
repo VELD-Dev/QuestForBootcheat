@@ -1,3 +1,4 @@
+![lines](https://tokei.rs/b1/github/VELD-Dev/QuestForBootcheat?category=lines&type=lua&label=Amount%20of%20lines%20that%20IG%20wrote)
 # wtf is that ?
 a fucking trainer to "cheat" with the Smuggler until the end of the game for now
 
